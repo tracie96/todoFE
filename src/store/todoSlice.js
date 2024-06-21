@@ -2,24 +2,24 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
-  const response = await axios.get('http://localhost:3001/api/todos');
+  const response = await axios.get('https://todobe-d5fk.onrender.com/api/todos');
   return response.data;
 });
 
 export const addTodo = createAsyncThunk('todos/addTodo', async (title) => {
-  const response = await axios.post('http://localhost:3001/api/todos', { title, completed: false });
+  const response = await axios.post('https://todobe-d5fk.onrender.com/api/todos', { title, completed: false });
   return response.data;
 });
 
 export const toggleComplete = createAsyncThunk('todos/toggleComplete', async (id, { getState }) => {
   const state = getState();
   const todo = state.todos.find(todo => todo.id === id);
-  const response = await axios.put(`http://localhost:3001/api/todos/${id}`, { completed: !todo.completed });
+  const response = await axios.put(`https://todobe-d5fk.onrender.com/api/todos/${id}`, { completed: !todo.completed });
   return response.data;
 });
 
 export const deleteTodo = createAsyncThunk('todos/deleteTodo', async (id) => {
-  await axios.delete(`http://localhost:3001/api/todos/${id}`);
+  await axios.delete(`https://todobe-d5fk.onrender.com/api/todos/${id}`);
   return id;
 });
 
